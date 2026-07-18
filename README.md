@@ -1,107 +1,93 @@
-# Health Tracker Backend API
+<!--
+  Replace <<GITHUB_USERNAME>>, <<REPO_NAME>>, <<SCREENSHOT_URL>> before publishing.
+-->
+<div align="center">
 
-A comprehensive Node.js backend API for the Health Tracker application with MongoDB integration.
+# 🩺 AIRA
+### AI-Powered Respiratory & Air-Quality Health Assistant
 
-## Features
+<img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=flat-square&logo=tensorflow&logoColor=white"/>
+<img src="https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB"/>
+<img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black"/>
+<img src="https://img.shields.io/badge/Raspberry_Pi-A22846?style=flat-square&logo=raspberrypi&logoColor=white"/>
 
-- **User Authentication**: JWT-based authentication with registration and login
-- **Health Records**: Store and manage detailed health information
-- **Daily Tracking**: Track daily activities like water intake, steps, meals, and sleep
-- **Analytics**: Generate insights and trends from health data
-- **Security**: Rate limiting, input validation, and secure password hashing
-- **Age-Specific**: Support for kids, adults, and elderly user groups
+</div>
 
-## Tech Stack
+## 📖 Overview
+AIRA is a portable health monitoring system that detects volatile organic compounds (VOCs) in the air using MQ gas sensors on a Raspberry Pi/Arduino, paired with a machine learning pipeline and a real-time family health dashboard.
 
-- **Node.js** with Express.js
-- **MongoDB** with Mongoose ODM
-- **JWT** for authentication
-- **bcryptjs** for password hashing
-- **express-validator** for input validation
-- **helmet** for security headers
-- **cors** for cross-origin requests
+## 🔍 Problem Statement
+Indoor and ambient air quality directly affects respiratory health, but most households have no low-cost, real-time way to monitor VOC exposure or detect early warning patterns — especially for family members with respiratory sensitivities. AIRA puts that capability into a portable, affordable device.
 
-## API Endpoints
+## ✨ Key Features
+- Real-time VOC sensing via MQ gas sensors on Raspberry Pi/Arduino
+- ML model (TensorFlow) trained to detect abnormal patterns in sensor readings
+- AI assistant that interprets readings and surfaces plain-language health insights
+- Real-time family health dashboard built with React and Firebase
+- Edge-to-cloud pipeline: sensor hardware → processing → live dashboard
 
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - User login
-- `GET /api/auth/me` - Get current user
-- `POST /api/auth/logout` - User logout
+## 🧱 Tech Stack
+| Layer | Technology |
+|---|---|
+| Hardware | Raspberry Pi / Arduino, MQ Gas Sensors |
+| ML | TensorFlow |
+| Backend | Flask |
+| Frontend | React |
+| Database / Realtime | Firebase |
 
-### User Management
-- `GET /api/users/profile` - Get user profile
-- `PUT /api/users/profile` - Update user profile
-- `DELETE /api/users/account` - Deactivate account
-- `GET /api/users/stats` - Get user statistics
+## 🔁 How It Works
+1. MQ gas sensors continuously sample air quality (VOC levels) via the Raspberry Pi/Arduino.
+2. Readings are sent to a Flask backend, where a TensorFlow model checks for abnormal patterns.
+3. Firebase stores readings in real time and syncs them to the dashboard.
+4. Family members view live air-quality trends and get AI-assistant explanations on the React dashboard.
 
-### Health Records
-- `POST /api/health/records` - Create health record
-- `GET /api/health/records` - Get health records
-- `GET /api/health/records/:id` - Get specific record
-- `PUT /api/health/records/:id` - Update health record
-- `DELETE /api/health/records/:id` - Delete health record
-- `GET /api/health/analytics` - Get health analytics
+## 🌱 Impact
+- Makes VOC/air-quality monitoring accessible at home, not just in labs or hospitals.
+- Gives families early warning on air-quality issues before symptoms appear.
+- Portable design means it isn't tied to one room or one fixed location.
 
-### Daily Tracking
-- `POST /api/tracking/daily` - Create/update daily tracking
-- `GET /api/tracking/daily` - Get daily tracking records
-- `GET /api/tracking/daily/today` - Get today's tracking
-- `POST /api/tracking/water` - Log water intake
-- `POST /api/tracking/meal` - Log meals
-- `GET /api/tracking/analytics` - Get tracking analytics
+## 🚀 Getting Started
 
-## Data Models
+### Prerequisites
+- Raspberry Pi / Arduino with MQ sensor setup
+- Python ≥ 3.9, Node.js ≥ 18
+- Firebase project credentials
 
-### User
-- Personal information (name, email, age, etc.)
-- Age group classification (kids/adults/elderly)
-- Medical conditions and emergency contacts
-- Preferences and settings
+### Installation
+```bash
+git clone https://github.com/hemadharshinikk.git
+cd <<REPO_NAME>>
 
-### Health Record
-- Vital signs (heart rate, blood pressure, temperature, etc.)
-- Symptoms and medications
-- Activities and mood tracking
-- File attachments support
+# Backend / ML service
+cd backend
+pip install -r requirements.txt
+python app.py
 
-### Daily Tracking
-- Water intake with target goals
-- Step counting and distance
-- Sleep duration and quality
-- Meal logging with nutrition info
-- Exercise tracking
-- Mood monitoring
+# Frontend dashboard
+cd ../frontend
+npm install
+npm start
+```
 
-## Security Features
+## 📸 Screenshots
 
-- Password hashing with bcrypt
-- JWT token authentication
-- Rate limiting (100 requests per 15 minutes)
-- Input validation and sanitization
-- CORS configuration
-- Security headers with Helmet
-- Environment variable protection
+**Home**
+![Home](aira-home.png)
 
-## Error Handling
+**Login**
+![Login Screen](aira-login.png)
 
-- Comprehensive error responses
-- Validation error details
-- Development vs production error messages
-- Graceful database connection handling
+**Dashboard**
+![Dashboard](aira-dashboard.png)
 
-## Getting Started
+## 🔮 Roadmap
+- [ ] Support additional gas sensor types beyond MQ series
+- [ ] Push notification alerts for abnormal readings
+- [ ] Multi-device support for larger families
 
-1. Install dependencies: `npm install`
-2. Set up environment variables (see .env.example)
-3. Start MongoDB service
-4. Run development server: `npm run dev`
-5. API will be available at `http://localhost:5000`
+## 🤝 Contributing
+Contributions and suggestions are welcome via [issues](https://github.com/hemadharshinikk/AIRA/issues).
 
-## Environment Variables
-
-- `MONGODB_URI` - MongoDB connection string
-- `JWT_SECRET` - Secret key for JWT tokens
-- `PORT` - Server port (default: 5000)
-- `NODE_ENV` - Environment (development/production)
-- `FRONTEND_URL` - Frontend URL for CORS
+## 📄 License
+This project is licensed under the MIT License.
